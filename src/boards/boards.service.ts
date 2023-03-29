@@ -26,4 +26,23 @@ export class BoardsService {
     this.boards.push(board);
     return board;
   }
+
+  //  id로 특정 게시물 가져오기(parameter 이용)
+  getBoardById(id: string): Board {
+    return this.boards.find((board) => board.id === id);
+  }
+
+  //   id로 특정 게시물 지우기
+  deleteBoard(id: string): void {
+    this.boards = this.boards.filter((board) => board.id !== id);
+  }
+
+  //   특정 게시물의 상태 업데이트
+  updateBoardStatus(id: string, status: BoardStatus): Board {
+    // 업데이트 하고자하는 모든 게시물의 정보를 board에 넣어줌
+    const board = this.getBoardById(id);
+    // 바꿀 status 값
+    board.status = status;
+    return board;
+  }
 }
